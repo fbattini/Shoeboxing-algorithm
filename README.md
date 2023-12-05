@@ -17,4 +17,4 @@ For now, this version of the algorithm implementation has the following limitati
 - Results are not automatically post-processed
 These limitations are only related to the practical implementation and not to the methodology itself.
 ## Contact
-[Federico Battini](https://www.linkedin.com/in/federico-battini/).
+[Federico Battini](https://www.linkedin.com/in/federico-battini/)
