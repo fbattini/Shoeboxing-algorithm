@@ -7,9 +7,9 @@ The file to run to perform the simplification is 1_DetailedToSimplified.py. The 
 
 The technical implementation of the algorithm is in the Python programming language and is based on numpy, pandas, scipy, and eppy.
 ## More details and references
-To learn more about this work or to cite it, please see the following two publications:
-- Validation of the algorithm for stand-alone buildings: https://www.sciencedirect.com/science/article/pii/S2210670722006096
-- Validation of the algorithm at district-level (open access): https://www.sciencedirect.com/science/article/pii/S0306261923009340
+To learn more about this work or to cite it, please see the following two publications (the second is open access):
+- Federico Battini, Giovanni Pernigotto, Andrea Gasparella, "A shoeboxing algorithm for urban building energy modeling: Validation for stand-alone buildings", Sustainable Cities and Society, Volume 89, 2023, 104305, ISSN 2210-6707, https://doi.org/10.1016/j.scs.2022.104305. (https://www.sciencedirect.com/science/article/pii/S2210670722006096)
+- Federico Battini, Giovanni Pernigotto, Andrea Gasparella, "District-level validation of a shoeboxing simplification algorithm to speed-up Urban Building Energy Modeling simulations", Applied Energy, Volume 349, 2023, 121570, ISSN 0306-2619, https://doi.org/10.1016/j.apenergy.2023.121570. (https://www.sciencedirect.com/science/article/pii/S0306261923009340)
 ## Current limitations
 For now, this version of the algorithm implementation has the following limitations:
 - Detailed models must be run for comparison and to obtain some properties to create the simplified models
