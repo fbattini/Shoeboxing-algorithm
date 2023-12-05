@@ -1,0 +1,538 @@
+!-Generator IDFEditor 1.51
+!-Option SortedOrder
+
+!-NOTE: All comments with '!-' are ignored by the IDFEditor and are generated automatically.
+!-      Use '!' comments if they need to be retained when using the IDFEditor.
+
+
+!-   ===========  ALL OBJECTS IN CLASS: VERSION ===========
+
+Version,
+    9.4.0;                   !- Version Identifier
+
+
+!-   ===========  ALL OBJECTS IN CLASS: SIMULATIONCONTROL ===========
+
+SimulationControl,
+    No,                      !- Do Zone Sizing Calculation
+    No,                      !- Do System Sizing Calculation
+    No,                      !- Do Plant Sizing Calculation
+    No,                      !- Run Simulation for Sizing Periods
+    Yes,                     !- Run Simulation for Weather File Run Periods
+    No,                      !- Do HVAC Sizing Simulation for Sizing Periods
+    1;                       !- Maximum Number of HVAC Sizing Simulation Passes
+
+
+!-   ===========  ALL OBJECTS IN CLASS: BUILDING ===========
+
+Building,
+    Shoebox1Floor,           !- Name
+    0,                       !- North Axis {deg}
+    City,                    !- Terrain
+    0.001,                   !- Loads Convergence Tolerance Value {W}
+    0.01,                    !- Temperature Convergence Tolerance Value {deltaC}
+    FullExterior,            !- Solar Distribution
+    100,                     !- Maximum Number of Warmup Days
+    6;                       !- Minimum Number of Warmup Days
+
+
+!-   ===========  ALL OBJECTS IN CLASS: SHADOWCALCULATION ===========
+
+ShadowCalculation,
+    PolygonClipping,         !- Shading Calculation Method
+    Periodic,                !- Shading Calculation Update Frequency Method
+    30,                      !- Shading Calculation Update Frequency
+    15000,                   !- Maximum Figures in Shadow Overlap Calculations
+    SutherlandHodgman,       !- Polygon Clipping Algorithm
+    512,                     !- Pixel Counting Resolution
+    SimpleSkyDiffuseModeling,!- Sky Diffuse Modeling Algorithm
+    No,                      !- Output External Shading Calculation Results
+    No,                      !- Disable Self-Shading Within Shading Zone Groups
+    No;                      !- Disable Self-Shading From Shading Zone Groups to Other Zones
+
+
+!-   ===========  ALL OBJECTS IN CLASS: SURFACECONVECTIONALGORITHM:INSIDE ===========
+
+SurfaceConvectionAlgorithm:Inside,
+    TARP;                    !- Algorithm
+
+
+!-   ===========  ALL OBJECTS IN CLASS: SURFACECONVECTIONALGORITHM:OUTSIDE ===========
+
+SurfaceConvectionAlgorithm:Outside,
+    TARP;                    !- Algorithm
+
+
+!-   ===========  ALL OBJECTS IN CLASS: HEATBALANCEALGORITHM ===========
+
+HeatBalanceAlgorithm,
+    ConductionTransferFunction,  !- Algorithm
+    200,                     !- Surface Temperature Upper Limit {C}
+    0.1,                     !- Minimum Surface Convection Heat Transfer Coefficient Value {W/m2-K}
+    1000;                    !- Maximum Surface Convection Heat Transfer Coefficient Value {W/m2-K}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: ZONEAIRHEATBALANCEALGORITHM ===========
+
+ZoneAirHeatBalanceAlgorithm,
+    ThirdOrderBackwardDifference;  !- Algorithm
+
+
+!-   ===========  ALL OBJECTS IN CLASS: TIMESTEP ===========
+
+Timestep,
+    6;                       !- Number of Timesteps per Hour
+
+
+!-   ===========  ALL OBJECTS IN CLASS: RUNPERIOD ===========
+
+RunPeriod,
+    CustomRun,               !- Name
+    1,                       !- Begin Month
+    1,                       !- Begin Day of Month
+    ,                        !- Begin Year
+    12,                      !- End Month
+    31,                      !- End Day of Month
+    ,                        !- End Year
+    Monday,                  !- Day of Week for Start Day
+    No,                      !- Use Weather File Holidays and Special Days
+    No,                      !- Use Weather File Daylight Saving Period
+    Yes,                     !- Apply Weekend Holiday Rule
+    Yes,                     !- Use Weather File Rain Indicators
+    Yes,                     !- Use Weather File Snow Indicators
+    No;                      !- Treat Weather as Actual
+
+
+!-   ===========  ALL OBJECTS IN CLASS: MATERIAL ===========
+
+Material,
+    Insulation,              !- Name
+    MediumRough,             !- Roughness
+    0.1,                     !- Thickness {m}
+    0.04,                    !- Conductivity {W/m-K}
+    40,                      !- Density {kg/m3}
+    1470,                    !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.6,                     !- Solar Absorptance
+    0.6;                     !- Visible Absorptance
+
+Material,
+    Concrete,                !- Name
+    MediumRough,             !- Roughness
+    0.2,                     !- Thickness {m}
+    0.37,                    !- Conductivity {W/m-K}
+    1190,                    !- Density {kg/m3}
+    840,                     !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.6,                     !- Solar Absorptance
+    0.6;                     !- Visible Absorptance
+
+
+!-   ===========  ALL OBJECTS IN CLASS: WINDOWMATERIAL:GLAZING ===========
+
+WindowMaterial:Glazing,
+    Clear 3mm,               !- Name
+    SpectralAverage,         !- Optical Data Type
+    ,                        !- Window Glass Spectral Data Set Name
+    0.003,                   !- Thickness {m}
+    0.837,                   !- Solar Transmittance at Normal Incidence
+    0.075,                   !- Front Side Solar Reflectance at Normal Incidence
+    0.075,                   !- Back Side Solar Reflectance at Normal Incidence
+    0.898,                   !- Visible Transmittance at Normal Incidence
+    0.081,                   !- Front Side Visible Reflectance at Normal Incidence
+    0.081,                   !- Back Side Visible Reflectance at Normal Incidence
+    0,                       !- Infrared Transmittance at Normal Incidence
+    0.84,                    !- Front Side Infrared Hemispherical Emissivity
+    0.84,                    !- Back Side Infrared Hemispherical Emissivity
+    0.9,                     !- Conductivity {W/m-K}
+    1,                       !- Dirt Correction Factor for Solar and Visible Transmittance
+    No;                      !- Solar Diffusing
+
+WindowMaterial:Glazing,
+    Clear 3mm loe,           !- Name
+    SpectralAverage,         !- Optical Data Type
+    ,                        !- Window Glass Spectral Data Set Name
+    0.003,                   !- Thickness {m}
+    0.837,                   !- Solar Transmittance at Normal Incidence
+    0.075,                   !- Front Side Solar Reflectance at Normal Incidence
+    0.075,                   !- Back Side Solar Reflectance at Normal Incidence
+    0.898,                   !- Visible Transmittance at Normal Incidence
+    0.081,                   !- Front Side Visible Reflectance at Normal Incidence
+    0.081,                   !- Back Side Visible Reflectance at Normal Incidence
+    0,                       !- Infrared Transmittance at Normal Incidence
+    0.84,                    !- Front Side Infrared Hemispherical Emissivity
+    0.84,                    !- Back Side Infrared Hemispherical Emissivity
+    0.9,                     !- Conductivity {W/m-K}
+    1,                       !- Dirt Correction Factor for Solar and Visible Transmittance
+    No;                      !- Solar Diffusing
+
+
+!-   ===========  ALL OBJECTS IN CLASS: WINDOWMATERIAL:GAS ===========
+
+WindowMaterial:Gas,
+    Air 6mm,                 !- Name
+    Air,                     !- Gas Type
+    0.0063;                  !- Thickness {m}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: CONSTRUCTION ===========
+
+Construction,
+    Envelope,                !- Name
+    Insulation,              !- Outside Layer
+    Concrete;                !- Layer 2
+
+Construction,
+    Window,                  !- Name
+    Clear 3mm,               !- Outside Layer
+    Air 6mm,                 !- Layer 2
+    Clear 3mm,               !- Layer 3
+    Air 6mm,                 !- Layer 4
+    Clear 3mm loe;           !- Layer 5
+
+Construction,
+    EnvelopeFlipped,         !- Name
+    Concrete,                !- Outside Layer
+    Insulation;              !- Layer 2
+
+
+!-   ===========  ALL OBJECTS IN CLASS: GLOBALGEOMETRYRULES ===========
+
+GlobalGeometryRules,
+    LowerLeftCorner,         !- Starting Vertex Position
+    CounterClockWise,        !- Vertex Entry Direction
+    Relative,                !- Coordinate System
+    Relative,                !- Daylighting Reference Point Coordinate System
+    Relative;                !- Rectangular Surface Coordinate System
+
+
+!-   ===========  ALL OBJECTS IN CLASS: ZONE ===========
+
+Zone,
+    Flr1_Shoebox_Floor1_Room1,  !- Name
+    0,                       !- Direction of Relative North {deg}
+    0,                       !- X Origin {m}
+    0,                       !- Y Origin {m}
+    0,                       !- Z Origin {m}
+    1,                       !- Type
+    1,                       !- Multiplier
+    3,                       !- Ceiling Height {m}
+    144,                     !- Volume {m3}
+    48,                      !- Floor Area {m2}
+    ,                        !- Zone Inside Convection Algorithm
+    ,                        !- Zone Outside Convection Algorithm
+    Yes;                     !- Part of Total Floor Area
+
+
+!-   ===========  ALL OBJECTS IN CLASS: BUILDINGSURFACE:DETAILED ===========
+
+BuildingSurface:Detailed,
+    Flr1_Shoebox_Floor1_Room1..Face0,  !- Name
+    Floor,                   !- Surface Type
+    Envelope,                !- Construction Name
+    Flr1_Shoebox_Floor1_Room1,  !- Zone Name
+    Adiabatic,               !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    autocalculate,           !- View Factor to Ground
+    4,                       !- Number of Vertices
+    0,                       !- Vertex 1 X-coordinate {m}
+    6,                       !- Vertex 1 Y-coordinate {m}
+    0,                       !- Vertex 1 Z-coordinate {m}
+    8,                       !- Vertex 2 X-coordinate {m}
+    6,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    8,                       !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    0,                       !- Vertex 4 X-coordinate {m}
+    0,                       !- Vertex 4 Y-coordinate {m}
+    0;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Flr1_Shoebox_Floor1_Room1..Face1,  !- Name
+    Wall,                    !- Surface Type
+    Envelope,                !- Construction Name
+    Flr1_Shoebox_Floor1_Room1,  !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    Autocalculate,           !- View Factor to Ground
+    4,                       !- Number of Vertices
+    0,                       !- Vertex 1 X-coordinate {m}
+    6,                       !- Vertex 1 Y-coordinate {m}
+    3,                       !- Vertex 1 Z-coordinate {m}
+    0,                       !- Vertex 2 X-coordinate {m}
+    6,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    0,                       !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    0,                       !- Vertex 4 X-coordinate {m}
+    0,                       !- Vertex 4 Y-coordinate {m}
+    3;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Flr1_Shoebox_Floor1_Room1..Face2,  !- Name
+    Wall,                    !- Surface Type
+    Envelope,                !- Construction Name
+    Flr1_Shoebox_Floor1_Room1,  !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    Autocalculate,           !- View Factor to Ground
+    4,                       !- Number of Vertices
+    0,                       !- Vertex 1 X-coordinate {m}
+    0,                       !- Vertex 1 Y-coordinate {m}
+    3,                       !- Vertex 1 Z-coordinate {m}
+    0,                       !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    8,                       !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    8,                       !- Vertex 4 X-coordinate {m}
+    0,                       !- Vertex 4 Y-coordinate {m}
+    3;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Flr1_Shoebox_Floor1_Room1..Face3,  !- Name
+    Wall,                    !- Surface Type
+    Envelope,                !- Construction Name
+    Flr1_Shoebox_Floor1_Room1,  !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    Autocalculate,           !- View Factor to Ground
+    4,                       !- Number of Vertices
+    8,                       !- Vertex 1 X-coordinate {m}
+    0,                       !- Vertex 1 Y-coordinate {m}
+    3,                       !- Vertex 1 Z-coordinate {m}
+    8,                       !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    8,                       !- Vertex 3 X-coordinate {m}
+    6,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    8,                       !- Vertex 4 X-coordinate {m}
+    6,                       !- Vertex 4 Y-coordinate {m}
+    3;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Flr1_Shoebox_Floor1_Room1..Face4,  !- Name
+    Wall,                    !- Surface Type
+    Envelope,                !- Construction Name
+    Flr1_Shoebox_Floor1_Room1,  !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    Autocalculate,           !- View Factor to Ground
+    4,                       !- Number of Vertices
+    8,                       !- Vertex 1 X-coordinate {m}
+    6,                       !- Vertex 1 Y-coordinate {m}
+    3,                       !- Vertex 1 Z-coordinate {m}
+    8,                       !- Vertex 2 X-coordinate {m}
+    6,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    0,                       !- Vertex 3 X-coordinate {m}
+    6,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    0,                       !- Vertex 4 X-coordinate {m}
+    6,                       !- Vertex 4 Y-coordinate {m}
+    3;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Flr1_Shoebox_Floor1_Room1..Face5,  !- Name
+    Roof,                    !- Surface Type
+    EnvelopeFlipped,         !- Construction Name
+    Flr1_Shoebox_Floor1_Room1,  !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    autocalculate,           !- View Factor to Ground
+    4,                       !- Number of Vertices
+    8,                       !- Vertex 1 X-coordinate {m}
+    6,                       !- Vertex 1 Y-coordinate {m}
+    3,                       !- Vertex 1 Z-coordinate {m}
+    0,                       !- Vertex 2 X-coordinate {m}
+    6,                       !- Vertex 2 Y-coordinate {m}
+    3,                       !- Vertex 2 Z-coordinate {m}
+    0,                       !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    3,                       !- Vertex 3 Z-coordinate {m}
+    8,                       !- Vertex 4 X-coordinate {m}
+    0,                       !- Vertex 4 Y-coordinate {m}
+    3;                       !- Vertex 4 Z-coordinate {m}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: FENESTRATIONSURFACE:DETAILED ===========
+
+FenestrationSurface:Detailed,
+    Flr1_Shoebox_Floor1_Room1..Face1_Glz1,  !- Name
+    Window,                  !- Surface Type
+    Window,                  !- Construction Name
+    Flr1_Shoebox_Floor1_Room1..Face1,  !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    Autocalculate,           !- View Factor to Ground
+    ,                        !- Frame and Divider Name
+    1,                       !- Multiplier
+    4,                       !- Number of Vertices
+    0,                       !- Vertex 1 X-coordinate {m}
+    5.324,                   !- Vertex 1 Y-coordinate {m}
+    2.662,                   !- Vertex 1 Z-coordinate {m}
+    0,                       !- Vertex 2 X-coordinate {m}
+    5.324,                   !- Vertex 2 Y-coordinate {m}
+    0.338,                   !- Vertex 2 Z-coordinate {m}
+    0,                       !- Vertex 3 X-coordinate {m}
+    0.676,                   !- Vertex 3 Y-coordinate {m}
+    0.338,                   !- Vertex 3 Z-coordinate {m}
+    0,                       !- Vertex 4 X-coordinate {m}
+    0.676,                   !- Vertex 4 Y-coordinate {m}
+    2.662;                   !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    Flr1_Shoebox_Floor1_Room1..Face2_Glz1,  !- Name
+    Window,                  !- Surface Type
+    Window,                  !- Construction Name
+    Flr1_Shoebox_Floor1_Room1..Face2,  !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    Autocalculate,           !- View Factor to Ground
+    ,                        !- Frame and Divider Name
+    1,                       !- Multiplier
+    4,                       !- Number of Vertices
+    0.902,                   !- Vertex 1 X-coordinate {m}
+    0,                       !- Vertex 1 Y-coordinate {m}
+    2.662,                   !- Vertex 1 Z-coordinate {m}
+    0.902,                   !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0.338,                   !- Vertex 2 Z-coordinate {m}
+    7.098,                   !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0.338,                   !- Vertex 3 Z-coordinate {m}
+    7.098,                   !- Vertex 4 X-coordinate {m}
+    0,                       !- Vertex 4 Y-coordinate {m}
+    2.662;                   !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    Flr1_Shoebox_Floor1_Room1..Face3_Glz1,  !- Name
+    Window,                  !- Surface Type
+    Window,                  !- Construction Name
+    Flr1_Shoebox_Floor1_Room1..Face3,  !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    Autocalculate,           !- View Factor to Ground
+    ,                        !- Frame and Divider Name
+    1,                       !- Multiplier
+    4,                       !- Number of Vertices
+    8,                       !- Vertex 1 X-coordinate {m}
+    0.676,                   !- Vertex 1 Y-coordinate {m}
+    2.662,                   !- Vertex 1 Z-coordinate {m}
+    8,                       !- Vertex 2 X-coordinate {m}
+    0.676,                   !- Vertex 2 Y-coordinate {m}
+    0.338,                   !- Vertex 2 Z-coordinate {m}
+    8,                       !- Vertex 3 X-coordinate {m}
+    5.324,                   !- Vertex 3 Y-coordinate {m}
+    0.338,                   !- Vertex 3 Z-coordinate {m}
+    8,                       !- Vertex 4 X-coordinate {m}
+    5.324,                   !- Vertex 4 Y-coordinate {m}
+    2.662;                   !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    Flr1_Shoebox_Floor1_Room1..Face4_Glz1,  !- Name
+    Window,                  !- Surface Type
+    Window,                  !- Construction Name
+    Flr1_Shoebox_Floor1_Room1..Face4,  !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    Autocalculate,           !- View Factor to Ground
+    ,                        !- Frame and Divider Name
+    1,                       !- Multiplier
+    4,                       !- Number of Vertices
+    7.098,                   !- Vertex 1 X-coordinate {m}
+    6,                       !- Vertex 1 Y-coordinate {m}
+    2.662,                   !- Vertex 1 Z-coordinate {m}
+    7.098,                   !- Vertex 2 X-coordinate {m}
+    6,                       !- Vertex 2 Y-coordinate {m}
+    0.338,                   !- Vertex 2 Z-coordinate {m}
+    0.902,                   !- Vertex 3 X-coordinate {m}
+    6,                       !- Vertex 3 Y-coordinate {m}
+    0.338,                   !- Vertex 3 Z-coordinate {m}
+    0.902,                   !- Vertex 4 X-coordinate {m}
+    6,                       !- Vertex 4 Y-coordinate {m}
+    2.662;                   !- Vertex 4 Z-coordinate {m}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: SURFACEPROPERTY:CONVECTIONCOEFFICIENTS:MULTIPLESURFACE ===========
+
+SurfaceProperty:ConvectionCoefficients:MultipleSurface,
+    AllExteriorSurfaces,     !- Surface Type
+    Outside,                 !- Convection Coefficient 1 Location
+    Value,                   !- Convection Coefficient 1 Type
+    20;                      !- Convection Coefficient 1 {W/m2-K}
+
+SurfaceProperty:ConvectionCoefficients:MultipleSurface,
+    AllExteriorWalls,        !- Surface Type
+    Inside,                  !- Convection Coefficient 1 Location
+    Value,                   !- Convection Coefficient 1 Type
+    2.5;                     !- Convection Coefficient 1 {W/m2-K}
+
+SurfaceProperty:ConvectionCoefficients:MultipleSurface,
+    AllExteriorRoofs,        !- Surface Type
+    Inside,                  !- Convection Coefficient 1 Location
+    Value,                   !- Convection Coefficient 1 Type
+    5;                       !- Convection Coefficient 1 {W/m2-K}
+
+SurfaceProperty:ConvectionCoefficients:MultipleSurface,
+    AllInteriorCeilings,     !- Surface Type
+    Inside,                  !- Convection Coefficient 1 Location
+    Value,                   !- Convection Coefficient 1 Type
+    5;                       !- Convection Coefficient 1 {W/m2-K}
+
+SurfaceProperty:ConvectionCoefficients:MultipleSurface,
+    AllExteriorFloors,       !- Surface Type
+    Inside,                  !- Convection Coefficient 1 Location
+    Value,                   !- Convection Coefficient 1 Type
+    0.7;                     !- Convection Coefficient 1 {W/m2-K}
+
+SurfaceProperty:ConvectionCoefficients:MultipleSurface,
+    AllInteriorFloors,       !- Surface Type
+    Inside,                  !- Convection Coefficient 1 Location
+    Value,                   !- Convection Coefficient 1 Type
+    0.7;                     !- Convection Coefficient 1 {W/m2-K}
+
+SurfaceProperty:ConvectionCoefficients:MultipleSurface,
+    AllExteriorWindows,      !- Surface Type
+    Inside,                  !- Convection Coefficient 1 Location
+    Value,                   !- Convection Coefficient 1 Type
+    2.5;                     !- Convection Coefficient 1 {W/m2-K}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: OUTPUT:VARIABLEDICTIONARY ===========
+
+Output:VariableDictionary,
+    regular,                 !- Key Field
+    Name;                    !- Sort Option
+
+Output:VariableDictionary,
+    IDF,                     !- Key Field
+    Name;                    !- Sort Option
+
+
+!-   ===========  ALL OBJECTS IN CLASS: OUTPUTCONTROL:TABLE:STYLE ===========
+
+OutputControl:Table:Style,
+    HTML,                    !- Column Separator
+    JtoKWH;                  !- Unit Conversion
+
+
+!-   ===========  ALL OBJECTS IN CLASS: OUTPUT:VARIABLE ===========
+
+Output:Variable,
+    *,                       !- Key Value
+    Surface Outside Face Incident Solar Radiation Rate per Area,  !- Variable Name
+    Monthly;                 !- Reporting Frequency
+

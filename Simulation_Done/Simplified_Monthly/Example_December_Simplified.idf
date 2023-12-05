@@ -1,0 +1,2433 @@
+!- Windows Line endings 
+
+VERSION,
+    9.4.0;                    !- Version Identifier
+
+SIMULATIONCONTROL,
+    No,                       !- Do Zone Sizing Calculation
+    No,                       !- Do System Sizing Calculation
+    No,                       !- Do Plant Sizing Calculation
+    No,                       !- Run Simulation for Sizing Periods
+    Yes,                      !- Run Simulation for Weather File Run Periods
+    No,                       !- Do HVAC Sizing Simulation for Sizing Periods
+    1;                        !- Maximum Number of HVAC Sizing Simulation Passes
+
+BUILDING,
+    Group15_Building5_Simplified,    !- Name
+    0,                        !- North Axis
+    City,                     !- Terrain
+    0.001,                    !- Loads Convergence Tolerance Value
+    0.01,                     !- Temperature Convergence Tolerance Value
+    FullExterior,             !- Solar Distribution
+    100,                      !- Maximum Number of Warmup Days
+    6;                        !- Minimum Number of Warmup Days
+
+SHADOWCALCULATION,
+    PolygonClipping,          !- Shading Calculation Method
+    Periodic,                 !- Shading Calculation Update Frequency Method
+    7,                        !- Shading Calculation Update Frequency
+    15000,                    !- Maximum Figures in Shadow Overlap Calculations
+    SutherlandHodgman,        !- Polygon Clipping Algorithm
+    512,                      !- Pixel Counting Resolution
+    SimpleSkyDiffuseModeling,    !- Sky Diffuse Modeling Algorithm
+    No,                       !- Output External Shading Calculation Results
+    No,                       !- Disable SelfShading Within Shading Zone Groups
+    No;                       !- Disable SelfShading From Shading Zone Groups to Other Zones
+
+SURFACECONVECTIONALGORITHM:INSIDE,
+    TARP;                     !- Algorithm
+
+SURFACECONVECTIONALGORITHM:OUTSIDE,
+    TARP;                     !- Algorithm
+
+HEATBALANCEALGORITHM,
+    ConductionTransferFunction,    !- Algorithm
+    200,                      !- Surface Temperature Upper Limit
+    0.1,                      !- Minimum Surface Convection Heat Transfer Coefficient Value
+    1000;                     !- Maximum Surface Convection Heat Transfer Coefficient Value
+
+ZONEAIRHEATBALANCEALGORITHM,
+    ThirdOrderBackwardDifference;    !- Algorithm
+
+TIMESTEP,
+    6;                        !- Number of Timesteps per Hour
+
+RUNPERIOD,
+    CustomRun,                !- Name
+    11,                       !- Begin Month
+    24,                       !- Begin Day of Month
+    ,                         !- Begin Year
+    12,                       !- End Month
+    31,                       !- End Day of Month
+    ,                         !- End Year
+    Monday,                   !- Day of Week for Start Day
+    No,                       !- Use Weather File Holidays and Special Days
+    No,                       !- Use Weather File Daylight Saving Period
+    Yes,                      !- Apply Weekend Holiday Rule
+    Yes,                      !- Use Weather File Rain Indicators
+    Yes,                      !- Use Weather File Snow Indicators
+    No;                       !- Treat Weather as Actual
+
+SCHEDULETYPELIMITS,
+    Any Number,               !- Name
+    ,                         !- Lower Limit Value
+    ,                         !- Upper Limit Value
+    Continuous,               !- Numeric Type
+    Dimensionless;            !- Unit Type
+
+SCHEDULE:COMPACT,
+    Always 20,                !- Name
+    Any Number,               !- Schedule Type Limits Name
+    Through 12/31,            !- Field 1
+    For: AllDays,             !- Field 2
+    Until: 24:00,             !- Field 3
+    20;                       !- Field 4
+
+SCHEDULE:COMPACT,
+    Always 26,                !- Name
+    Any Number,               !- Schedule Type Limits Name
+    Through 12/31,            !- Field 1
+    For: AllDays,             !- Field 2
+    Until: 24:00,             !- Field 3
+    26;                       !- Field 4
+
+SCHEDULE:COMPACT,
+    Always 1,                 !- Name
+    Any Number,               !- Schedule Type Limits Name
+    Through 12/31,            !- Field 1
+    For: AllDays,             !- Field 2
+    Until: 24:00,             !- Field 3
+    1;                        !- Field 4
+
+SCHEDULE:COMPACT,
+    Always 0,                 !- Name
+    Any Number,               !- Schedule Type Limits Name
+    Through 12/31,            !- Field 1
+    For: AllDays,             !- Field 2
+    Until: 24:00,             !- Field 3
+    0;                        !- Field 4
+
+SCHEDULE:COMPACT,
+    Always 4,                 !- Name
+    Any Number,               !- Schedule Type Limits Name
+    Through 12/31,            !- Field 1
+    For: AllDays,             !- Field 2
+    Until: 24:00,             !- Field 3
+    4;                        !- Field 4
+
+MATERIAL,
+    Insulation,               !- Name
+    MediumRough,              !- Roughness
+    0.1,                      !- Thickness
+    0.04,                     !- Conductivity
+    40,                       !- Density
+    1470,                     !- Specific Heat
+    0.9,                      !- Thermal Absorptance
+    0.6,                      !- Solar Absorptance
+    0.6;                      !- Visible Absorptance
+
+MATERIAL,
+    Concrete,                 !- Name
+    MediumRough,              !- Roughness
+    0.2,                      !- Thickness
+    0.37,                     !- Conductivity
+    1190,                     !- Density
+    840,                      !- Specific Heat
+    0.9,                      !- Thermal Absorptance
+    0.6,                      !- Solar Absorptance
+    0.6;                      !- Visible Absorptance
+
+MATERIAL:NOMASS,
+    ObstructionSurface,       !- Name
+    MediumRough,              !- Roughness
+    0.4143341,                !- Thermal Resistance
+    0.9,                      !- Thermal Absorptance
+    0.6,                      !- Solar Absorptance
+    0.6;                      !- Visible Absorptance
+
+WindowMaterial:Glazing,
+    Clear 3mm,                !- Name
+    SpectralAverage,          !- Optical Data Type
+    ,                         !- Window Glass Spectral Data Set Name
+    0.003,                    !- Thickness
+    0.837,                    !- Solar Transmittance at Normal Incidence
+    0.075,                    !- Front Side Solar Reflectance at Normal Incidence
+    0.075,                    !- Back Side Solar Reflectance at Normal Incidence
+    0.898,                    !- Visible Transmittance at Normal Incidence
+    0.081,                    !- Front Side Visible Reflectance at Normal Incidence
+    0.081,                    !- Back Side Visible Reflectance at Normal Incidence
+    0,                        !- Infrared Transmittance at Normal Incidence
+    0.84,                     !- Front Side Infrared Hemispherical Emissivity
+    0.84,                     !- Back Side Infrared Hemispherical Emissivity
+    0.9,                      !- Conductivity
+    1,                        !- Dirt Correction Factor for Solar and Visible Transmittance
+    No;                       !- Solar Diffusing
+
+WindowMaterial:Glazing,
+    Clear 3mm loe,            !- Name
+    SpectralAverage,          !- Optical Data Type
+    ,                         !- Window Glass Spectral Data Set Name
+    0.003,                    !- Thickness
+    0.63,                     !- Solar Transmittance at Normal Incidence
+    0.22,                     !- Front Side Solar Reflectance at Normal Incidence
+    0.22,                     !- Back Side Solar Reflectance at Normal Incidence
+    0.85,                     !- Visible Transmittance at Normal Incidence
+    0.079,                    !- Front Side Visible Reflectance at Normal Incidence
+    0.079,                    !- Back Side Visible Reflectance at Normal Incidence
+    0,                        !- Infrared Transmittance at Normal Incidence
+    0.1,                      !- Front Side Infrared Hemispherical Emissivity
+    0.84,                     !- Back Side Infrared Hemispherical Emissivity
+    0.9,                      !- Conductivity
+    1,                        !- Dirt Correction Factor for Solar and Visible Transmittance
+    No;                       !- Solar Diffusing
+
+WindowMaterial:Gas,
+    Air 6mm,                  !- Name
+    Air,                      !- Gas Type
+    0.0063;                   !- Thickness
+
+CONSTRUCTION,
+    Envelope,                 !- Name
+    Insulation,               !- Outside Layer
+    Concrete;                 !- Layer 2
+
+CONSTRUCTION,
+    Window,                   !- Name
+    Clear 3mm,                !- Outside Layer
+    Air 6mm,                  !- Layer 2
+    Clear 3mm,                !- Layer 3
+    Air 6mm,                  !- Layer 4
+    Clear 3mm loe;            !- Layer 5
+
+CONSTRUCTION,
+    EnvelopeFlipped,          !- Name
+    Concrete,                 !- Outside Layer
+    Insulation;               !- Layer 2
+
+CONSTRUCTION,
+    Door,                     !- Name
+    ObstructionSurface;       !- Outside Layer
+
+GLOBALGEOMETRYRULES,
+    LowerLeftCorner,          !- Starting Vertex Position
+    CounterClockWise,         !- Vertex Entry Direction
+    Relative,                 !- Coordinate System
+    Relative,                 !- Daylighting Reference Point Coordinate System
+    Relative;                 !- Rectangular Surface Coordinate System
+
+Zone,
+    Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    0,                        !- Direction of Relative North
+    0,                        !- X Origin
+    0,                        !- Y Origin
+    0,                        !- Z Origin
+    1,                        !- Type
+    1,                        !- Multiplier
+    ,                         !- Ceiling Height
+    ,                         !- Volume
+    ,                         !- Floor Area
+    ,                         !- Zone Inside Convection Algorithm
+    ,                         !- Zone Outside Convection Algorithm
+    Yes;                      !- Part of Total Floor Area
+
+Zone,
+    Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    0,                        !- Direction of Relative North
+    0,                        !- X Origin
+    0,                        !- Y Origin
+    0,                        !- Z Origin
+    1,                        !- Type
+    1,                        !- Multiplier
+    ,                         !- Ceiling Height
+    ,                         !- Volume
+    ,                         !- Floor Area
+    ,                         !- Zone Inside Convection Algorithm
+    ,                         !- Zone Outside Convection Algorithm
+    Yes;                      !- Part of Total Floor Area
+
+Zone,
+    Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    0,                        !- Direction of Relative North
+    0,                        !- X Origin
+    0,                        !- Y Origin
+    0,                        !- Z Origin
+    1,                        !- Type
+    1,                        !- Multiplier
+    ,                         !- Ceiling Height
+    ,                         !- Volume
+    ,                         !- Floor Area
+    ,                         !- Zone Inside Convection Algorithm
+    ,                         !- Zone Outside Convection Algorithm
+    Yes;                      !- Part of Total Floor Area
+
+Zone,
+    Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    0,                        !- Direction of Relative North
+    0,                        !- X Origin
+    0,                        !- Y Origin
+    0,                        !- Z Origin
+    1,                        !- Type
+    1,                        !- Multiplier
+    ,                         !- Ceiling Height
+    ,                         !- Volume
+    ,                         !- Floor Area
+    ,                         !- Zone Inside Convection Algorithm
+    ,                         !- Zone Outside Convection Algorithm
+    Yes;                      !- Part of Total Floor Area
+
+BUILDINGSURFACE:DETAILED,
+    FloorNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Floor,                    !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone Name
+    Ground,                   !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    0,                        !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    0,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    0,                        !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    0;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    SouthAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone Name
+    Adiabatic,                !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    0,                        !- Vertex 1 Zcoordinate
+    6,                        !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    0,                        !- Vertex 2 Zcoordinate
+    6,                        !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    3,                        !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    3;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    SouthNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    6,                        !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    0,                        !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    0,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    3,                        !- Vertex 3 Zcoordinate
+    6,                        !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    3;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    EastAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone Name
+    Adiabatic,                !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    0,                        !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    6,                        !- Vertex 2 Ycoordinate
+    0,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    6,                        !- Vertex 3 Ycoordinate
+    3,                        !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    3;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    EastNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    6,                        !- Vertex 1 Ycoordinate
+    0,                        !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    0,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    3,                        !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    6,                        !- Vertex 4 Ycoordinate
+    3;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    NorthAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone Name
+    Adiabatic,                !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    0,                        !- Vertex 1 Zcoordinate
+    3,                        !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    0,                        !- Vertex 2 Zcoordinate
+    3,                        !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    3,                        !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    3;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    NorthNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    3,                        !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    0,                        !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    0,                        !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    3,                        !- Vertex 3 Zcoordinate
+    3,                        !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    3;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    WestAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone Name
+    Adiabatic,                !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    0,                        !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    6,                        !- Vertex 2 Ycoordinate
+    0,                        !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    6,                        !- Vertex 3 Ycoordinate
+    3,                        !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    3;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    WestNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    6,                        !- Vertex 1 Ycoordinate
+    0,                        !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    0,                        !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    3,                        !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    6,                        !- Vertex 4 Ycoordinate
+    3;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    RoofNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Ceiling,                  !- Surface Type
+    EnvelopeFlipped,          !- Construction Name
+    Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone Name
+    Surface,                  !- Outside Boundary Condition
+    FloorNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    3,                        !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    3,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    3,                        !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    3;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    FloorNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Floor,                    !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Surface,                  !- Outside Boundary Condition
+    RoofNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    3,                        !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    3,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    3,                        !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    3;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    SouthAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Adiabatic,                !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    3,                        !- Vertex 1 Zcoordinate
+    6,                        !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    3,                        !- Vertex 2 Zcoordinate
+    6,                        !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    6,                        !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    6;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    SouthNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    6,                        !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    3,                        !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    3,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    6,                        !- Vertex 3 Zcoordinate
+    6,                        !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    6;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    EastAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Adiabatic,                !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    3,                        !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    6,                        !- Vertex 2 Ycoordinate
+    3,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    6,                        !- Vertex 3 Ycoordinate
+    6,                        !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    6;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    EastNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    6,                        !- Vertex 1 Ycoordinate
+    3,                        !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    3,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    6,                        !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    6,                        !- Vertex 4 Ycoordinate
+    6;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    NorthAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Adiabatic,                !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    3,                        !- Vertex 1 Zcoordinate
+    3,                        !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    3,                        !- Vertex 2 Zcoordinate
+    3,                        !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    6,                        !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    6;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    NorthNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    3,                        !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    3,                        !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    3,                        !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    6,                        !- Vertex 3 Zcoordinate
+    3,                        !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    6;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    WestAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Adiabatic,                !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    3,                        !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    6,                        !- Vertex 2 Ycoordinate
+    3,                        !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    6,                        !- Vertex 3 Ycoordinate
+    6,                        !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    6;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    WestNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    6,                        !- Vertex 1 Ycoordinate
+    3,                        !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    3,                        !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    6,                        !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    6,                        !- Vertex 4 Ycoordinate
+    6;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    RoofNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Ceiling,                  !- Surface Type
+    EnvelopeFlipped,          !- Construction Name
+    Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Surface,                  !- Outside Boundary Condition
+    FloorNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    6,                        !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    6,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    6,                        !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    6;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    FloorNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Floor,                    !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Surface,                  !- Outside Boundary Condition
+    RoofNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    6,                        !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    6,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    6,                        !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    6;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    SouthAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Adiabatic,                !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    6,                        !- Vertex 1 Zcoordinate
+    6,                        !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    6,                        !- Vertex 2 Zcoordinate
+    6,                        !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    9,                        !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    9;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    SouthNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    6,                        !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    6,                        !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    6,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    9,                        !- Vertex 3 Zcoordinate
+    6,                        !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    9;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    EastAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Adiabatic,                !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    6,                        !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    6,                        !- Vertex 2 Ycoordinate
+    6,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    6,                        !- Vertex 3 Ycoordinate
+    9,                        !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    9;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    EastNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    6,                        !- Vertex 1 Ycoordinate
+    6,                        !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    6,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    9,                        !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    6,                        !- Vertex 4 Ycoordinate
+    9;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    NorthAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Adiabatic,                !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    6,                        !- Vertex 1 Zcoordinate
+    3,                        !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    6,                        !- Vertex 2 Zcoordinate
+    3,                        !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    9,                        !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    9;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    NorthNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    3,                        !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    6,                        !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    6,                        !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    9,                        !- Vertex 3 Zcoordinate
+    3,                        !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    9;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    WestAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Adiabatic,                !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    6,                        !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    6,                        !- Vertex 2 Ycoordinate
+    6,                        !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    6,                        !- Vertex 3 Ycoordinate
+    9,                        !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    9;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    WestNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    6,                        !- Vertex 1 Ycoordinate
+    6,                        !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    6,                        !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    9,                        !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    6,                        !- Vertex 4 Ycoordinate
+    9;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    RoofNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Ceiling,                  !- Surface Type
+    EnvelopeFlipped,          !- Construction Name
+    Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Surface,                  !- Outside Boundary Condition
+    FloorNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    9,                        !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    9,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    9,                        !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    9;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    FloorNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Floor,                    !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Surface,                  !- Outside Boundary Condition
+    RoofNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    9,                        !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    9,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    9,                        !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    9;                        !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    SouthAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Adiabatic,                !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    9,                        !- Vertex 1 Zcoordinate
+    6,                        !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    9,                        !- Vertex 2 Zcoordinate
+    6,                        !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    12,                       !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    12;                       !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    SouthNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    6,                        !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    9,                        !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    9,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    12,                       !- Vertex 3 Zcoordinate
+    6,                        !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    12;                       !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    EastAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Adiabatic,                !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    9,                        !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    6,                        !- Vertex 2 Ycoordinate
+    9,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    6,                        !- Vertex 3 Ycoordinate
+    12,                       !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    12;                       !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    EastNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    6,                        !- Vertex 1 Ycoordinate
+    9,                        !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    9,                        !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    12,                       !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    6,                        !- Vertex 4 Ycoordinate
+    12;                       !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    NorthAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Adiabatic,                !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    9,                        !- Vertex 1 Zcoordinate
+    3,                        !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    9,                        !- Vertex 2 Zcoordinate
+    3,                        !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    12,                       !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    12;                       !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    NorthNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    3,                        !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    9,                        !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    9,                        !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    12,                       !- Vertex 3 Zcoordinate
+    3,                        !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    12;                       !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    WestAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Adiabatic,                !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    9,                        !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    6,                        !- Vertex 2 Ycoordinate
+    9,                        !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    6,                        !- Vertex 3 Ycoordinate
+    12,                       !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    12;                       !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    WestNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Wall,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    6,                        !- Vertex 1 Ycoordinate
+    9,                        !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    9,                        !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    12,                       !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    6,                        !- Vertex 4 Ycoordinate
+    12;                       !- Vertex 4 Zcoordinate
+
+BUILDINGSURFACE:DETAILED,
+    RoofNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Roof,                     !- Surface Type
+    Envelope,                 !- Construction Name
+    Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    autocalculate,            !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    12,                       !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    12,                       !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    12,                       !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    12;                       !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Shading_SouthNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Door,                     !- Surface Type
+    Door,                     !- Construction Name
+    SouthNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    7.2,                      !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    0.5,                      !- Vertex 1 Zcoordinate
+    10.8,                     !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    0.5,                      !- Vertex 2 Zcoordinate
+    10.8,                     !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    2.208,                    !- Vertex 3 Zcoordinate
+    7.2,                      !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    2.208;                    !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Window_SouthNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Window,                   !- Surface Type
+    Window,                   !- Construction Name
+    SouthNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    7.2,                      !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    2.208,                    !- Vertex 1 Zcoordinate
+    10.8,                     !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    2.208,                    !- Vertex 2 Zcoordinate
+    10.8,                     !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    2.5,                      !- Vertex 3 Zcoordinate
+    7.2,                      !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    2.5;                      !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Shading_EastNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Door,                     !- Surface Type
+    Door,                     !- Construction Name
+    EastNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    7.2,                      !- Vertex 1 Ycoordinate
+    0.5,                      !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    10.8,                     !- Vertex 2 Ycoordinate
+    0.5,                      !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    10.8,                     !- Vertex 3 Ycoordinate
+    1.982,                    !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    7.2,                      !- Vertex 4 Ycoordinate
+    1.982;                    !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Window_EastNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Window,                   !- Surface Type
+    Window,                   !- Construction Name
+    EastNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    7.2,                      !- Vertex 1 Ycoordinate
+    1.982,                    !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    10.8,                     !- Vertex 2 Ycoordinate
+    1.982,                    !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    10.8,                     !- Vertex 3 Ycoordinate
+    2.5,                      !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    7.2,                      !- Vertex 4 Ycoordinate
+    2.5;                      !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Shading_NorthNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Door,                     !- Surface Type
+    Door,                     !- Construction Name
+    NorthNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    2.4,                      !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    0.5,                      !- Vertex 1 Zcoordinate
+    0.6,                      !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    0.5,                      !- Vertex 2 Zcoordinate
+    0.6,                      !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    2.012,                    !- Vertex 3 Zcoordinate
+    2.4,                      !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    2.012;                    !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Window_NorthNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Window,                   !- Surface Type
+    Window,                   !- Construction Name
+    NorthNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    2.4,                      !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    2.012,                    !- Vertex 1 Zcoordinate
+    0.6,                      !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    2.012,                    !- Vertex 2 Zcoordinate
+    0.6,                      !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    2.5,                      !- Vertex 3 Zcoordinate
+    2.4,                      !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    2.5;                      !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Shading_WestNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Door,                     !- Surface Type
+    Door,                     !- Construction Name
+    WestNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    4.8,                      !- Vertex 1 Ycoordinate
+    0.5,                      !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    1.2,                      !- Vertex 2 Ycoordinate
+    0.5,                      !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    1.2,                      !- Vertex 3 Ycoordinate
+    1.939,                    !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    4.8,                      !- Vertex 4 Ycoordinate
+    1.939;                    !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Window_WestNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Window,                   !- Surface Type
+    Window,                   !- Construction Name
+    WestNonAdiabatic_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    4.8,                      !- Vertex 1 Ycoordinate
+    1.939,                    !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    1.2,                      !- Vertex 2 Ycoordinate
+    1.939,                    !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    1.2,                      !- Vertex 3 Ycoordinate
+    2.5,                      !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    4.8,                      !- Vertex 4 Ycoordinate
+    2.5;                      !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Shading_SouthNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Door,                     !- Surface Type
+    Door,                     !- Construction Name
+    SouthNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    7.2,                      !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    3.5,                      !- Vertex 1 Zcoordinate
+    10.8,                     !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    3.5,                      !- Vertex 2 Zcoordinate
+    10.8,                     !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    4.918,                    !- Vertex 3 Zcoordinate
+    7.2,                      !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    4.918;                    !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Window_SouthNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Window,                   !- Surface Type
+    Window,                   !- Construction Name
+    SouthNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    7.2,                      !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    4.918,                    !- Vertex 1 Zcoordinate
+    10.8,                     !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    4.918,                    !- Vertex 2 Zcoordinate
+    10.8,                     !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    5.5,                      !- Vertex 3 Zcoordinate
+    7.2,                      !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    5.5;                      !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Shading_EastNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Door,                     !- Surface Type
+    Door,                     !- Construction Name
+    EastNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    7.2,                      !- Vertex 1 Ycoordinate
+    3.5,                      !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    10.8,                     !- Vertex 2 Ycoordinate
+    3.5,                      !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    10.8,                     !- Vertex 3 Ycoordinate
+    4.792,                    !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    7.2,                      !- Vertex 4 Ycoordinate
+    4.792;                    !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Window_EastNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Window,                   !- Surface Type
+    Window,                   !- Construction Name
+    EastNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    7.2,                      !- Vertex 1 Ycoordinate
+    4.792,                    !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    10.8,                     !- Vertex 2 Ycoordinate
+    4.792,                    !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    10.8,                     !- Vertex 3 Ycoordinate
+    5.5,                      !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    7.2,                      !- Vertex 4 Ycoordinate
+    5.5;                      !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Shading_NorthNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Door,                     !- Surface Type
+    Door,                     !- Construction Name
+    NorthNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    2.4,                      !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    3.5,                      !- Vertex 1 Zcoordinate
+    0.6,                      !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    3.5,                      !- Vertex 2 Zcoordinate
+    0.6,                      !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    4.966,                    !- Vertex 3 Zcoordinate
+    2.4,                      !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    4.966;                    !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Window_NorthNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Window,                   !- Surface Type
+    Window,                   !- Construction Name
+    NorthNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    2.4,                      !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    4.966,                    !- Vertex 1 Zcoordinate
+    0.6,                      !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    4.966,                    !- Vertex 2 Zcoordinate
+    0.6,                      !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    5.5,                      !- Vertex 3 Zcoordinate
+    2.4,                      !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    5.5;                      !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Shading_WestNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Door,                     !- Surface Type
+    Door,                     !- Construction Name
+    WestNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    4.8,                      !- Vertex 1 Ycoordinate
+    3.5,                      !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    1.2,                      !- Vertex 2 Ycoordinate
+    3.5,                      !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    1.2,                      !- Vertex 3 Ycoordinate
+    4.823,                    !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    4.8,                      !- Vertex 4 Ycoordinate
+    4.823;                    !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Window_WestNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Window,                   !- Surface Type
+    Window,                   !- Construction Name
+    WestNonAdiabatic_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    4.8,                      !- Vertex 1 Ycoordinate
+    4.823,                    !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    1.2,                      !- Vertex 2 Ycoordinate
+    4.823,                    !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    1.2,                      !- Vertex 3 Ycoordinate
+    5.5,                      !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    4.8,                      !- Vertex 4 Ycoordinate
+    5.5;                      !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Shading_SouthNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Door,                     !- Surface Type
+    Door,                     !- Construction Name
+    SouthNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    7.2,                      !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    6.5,                      !- Vertex 1 Zcoordinate
+    10.8,                     !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    6.5,                      !- Vertex 2 Zcoordinate
+    10.8,                     !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    7.606,                    !- Vertex 3 Zcoordinate
+    7.2,                      !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    7.606;                    !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Window_SouthNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Window,                   !- Surface Type
+    Window,                   !- Construction Name
+    SouthNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    7.2,                      !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    7.606,                    !- Vertex 1 Zcoordinate
+    10.8,                     !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    7.606,                    !- Vertex 2 Zcoordinate
+    10.8,                     !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    8.5,                      !- Vertex 3 Zcoordinate
+    7.2,                      !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    8.5;                      !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Shading_EastNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Door,                     !- Surface Type
+    Door,                     !- Construction Name
+    EastNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    7.2,                      !- Vertex 1 Ycoordinate
+    6.5,                      !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    10.8,                     !- Vertex 2 Ycoordinate
+    6.5,                      !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    10.8,                     !- Vertex 3 Ycoordinate
+    7.483,                    !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    7.2,                      !- Vertex 4 Ycoordinate
+    7.483;                    !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Window_EastNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Window,                   !- Surface Type
+    Window,                   !- Construction Name
+    EastNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    7.2,                      !- Vertex 1 Ycoordinate
+    7.483,                    !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    10.8,                     !- Vertex 2 Ycoordinate
+    7.483,                    !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    10.8,                     !- Vertex 3 Ycoordinate
+    8.5,                      !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    7.2,                      !- Vertex 4 Ycoordinate
+    8.5;                      !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Shading_NorthNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Door,                     !- Surface Type
+    Door,                     !- Construction Name
+    NorthNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    2.4,                      !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    6.5,                      !- Vertex 1 Zcoordinate
+    0.6,                      !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    6.5,                      !- Vertex 2 Zcoordinate
+    0.6,                      !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    7.752,                    !- Vertex 3 Zcoordinate
+    2.4,                      !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    7.752;                    !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Window_NorthNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Window,                   !- Surface Type
+    Window,                   !- Construction Name
+    NorthNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    2.4,                      !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    7.752,                    !- Vertex 1 Zcoordinate
+    0.6,                      !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    7.752,                    !- Vertex 2 Zcoordinate
+    0.6,                      !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    8.5,                      !- Vertex 3 Zcoordinate
+    2.4,                      !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    8.5;                      !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Shading_WestNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Door,                     !- Surface Type
+    Door,                     !- Construction Name
+    WestNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    4.8,                      !- Vertex 1 Ycoordinate
+    6.5,                      !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    1.2,                      !- Vertex 2 Ycoordinate
+    6.5,                      !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    1.2,                      !- Vertex 3 Ycoordinate
+    7.533,                    !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    4.8,                      !- Vertex 4 Ycoordinate
+    7.533;                    !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Window_WestNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Window,                   !- Surface Type
+    Window,                   !- Construction Name
+    WestNonAdiabatic_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    4.8,                      !- Vertex 1 Ycoordinate
+    7.533,                    !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    1.2,                      !- Vertex 2 Ycoordinate
+    7.533,                    !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    1.2,                      !- Vertex 3 Ycoordinate
+    8.5,                      !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    4.8,                      !- Vertex 4 Ycoordinate
+    8.5;                      !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Shading_SouthNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Door,                     !- Surface Type
+    Door,                     !- Construction Name
+    SouthNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    7.2,                      !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    9.5,                      !- Vertex 1 Zcoordinate
+    10.8,                     !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    9.5,                      !- Vertex 2 Zcoordinate
+    10.8,                     !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    9.963,                    !- Vertex 3 Zcoordinate
+    7.2,                      !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    9.963;                    !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Window_SouthNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Window,                   !- Surface Type
+    Window,                   !- Construction Name
+    SouthNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    7.2,                      !- Vertex 1 Xcoordinate
+    0,                        !- Vertex 1 Ycoordinate
+    9.963,                    !- Vertex 1 Zcoordinate
+    10.8,                     !- Vertex 2 Xcoordinate
+    0,                        !- Vertex 2 Ycoordinate
+    9.963,                    !- Vertex 2 Zcoordinate
+    10.8,                     !- Vertex 3 Xcoordinate
+    0,                        !- Vertex 3 Ycoordinate
+    11.5,                     !- Vertex 3 Zcoordinate
+    7.2,                      !- Vertex 4 Xcoordinate
+    0,                        !- Vertex 4 Ycoordinate
+    11.5;                     !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Shading_EastNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Door,                     !- Surface Type
+    Door,                     !- Construction Name
+    EastNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    7.2,                      !- Vertex 1 Ycoordinate
+    9.5,                      !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    10.8,                     !- Vertex 2 Ycoordinate
+    9.5,                      !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    10.8,                     !- Vertex 3 Ycoordinate
+    9.939,                    !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    7.2,                      !- Vertex 4 Ycoordinate
+    9.939;                    !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Window_EastNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Window,                   !- Surface Type
+    Window,                   !- Construction Name
+    EastNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    12,                       !- Vertex 1 Xcoordinate
+    7.2,                      !- Vertex 1 Ycoordinate
+    9.939,                    !- Vertex 1 Zcoordinate
+    12,                       !- Vertex 2 Xcoordinate
+    10.8,                     !- Vertex 2 Ycoordinate
+    9.939,                    !- Vertex 2 Zcoordinate
+    12,                       !- Vertex 3 Xcoordinate
+    10.8,                     !- Vertex 3 Ycoordinate
+    11.5,                     !- Vertex 3 Zcoordinate
+    12,                       !- Vertex 4 Xcoordinate
+    7.2,                      !- Vertex 4 Ycoordinate
+    11.5;                     !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Shading_NorthNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Door,                     !- Surface Type
+    Door,                     !- Construction Name
+    NorthNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    2.4,                      !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    9.5,                      !- Vertex 1 Zcoordinate
+    0.6,                      !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    9.5,                      !- Vertex 2 Zcoordinate
+    0.6,                      !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    10.184,                   !- Vertex 3 Zcoordinate
+    2.4,                      !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    10.184;                   !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Window_NorthNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Window,                   !- Surface Type
+    Window,                   !- Construction Name
+    NorthNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    2.4,                      !- Vertex 1 Xcoordinate
+    12,                       !- Vertex 1 Ycoordinate
+    10.184,                   !- Vertex 1 Zcoordinate
+    0.6,                      !- Vertex 2 Xcoordinate
+    12,                       !- Vertex 2 Ycoordinate
+    10.184,                   !- Vertex 2 Zcoordinate
+    0.6,                      !- Vertex 3 Xcoordinate
+    12,                       !- Vertex 3 Ycoordinate
+    11.5,                     !- Vertex 3 Zcoordinate
+    2.4,                      !- Vertex 4 Xcoordinate
+    12,                       !- Vertex 4 Ycoordinate
+    11.5;                     !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Shading_WestNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Door,                     !- Surface Type
+    Door,                     !- Construction Name
+    WestNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    4.8,                      !- Vertex 1 Ycoordinate
+    9.5,                      !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    1.2,                      !- Vertex 2 Ycoordinate
+    9.5,                      !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    1.2,                      !- Vertex 3 Ycoordinate
+    10.066,                   !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    4.8,                      !- Vertex 4 Ycoordinate
+    10.066;                   !- Vertex 4 Zcoordinate
+
+FENESTRATIONSURFACE:DETAILED,
+    Window_WestNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Window,                   !- Surface Type
+    Window,                   !- Construction Name
+    WestNonAdiabatic_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Building Surface Name
+    ,                         !- Outside Boundary Condition Object
+    autocalculate,            !- View Factor to Ground
+    ,                         !- Frame and Divider Name
+    1,                        !- Multiplier
+    4,                        !- Number of Vertices
+    0,                        !- Vertex 1 Xcoordinate
+    4.8,                      !- Vertex 1 Ycoordinate
+    10.066,                   !- Vertex 1 Zcoordinate
+    0,                        !- Vertex 2 Xcoordinate
+    1.2,                      !- Vertex 2 Ycoordinate
+    10.066,                   !- Vertex 2 Zcoordinate
+    0,                        !- Vertex 3 Xcoordinate
+    1.2,                      !- Vertex 3 Ycoordinate
+    11.5,                     !- Vertex 3 Zcoordinate
+    0,                        !- Vertex 4 Xcoordinate
+    4.8,                      !- Vertex 4 Ycoordinate
+    11.5;                     !- Vertex 4 Zcoordinate
+
+SURFACEPROPERTY:CONVECTIONCOEFFICIENTS:MULTIPLESURFACE,
+    AllExteriorSurfaces,      !- Surface Type
+    Outside,                  !- Convection Coefficient 1 Location
+    Value,                    !- Convection Coefficient 1 Type
+    20,                       !- Convection Coefficient 1
+    ,                         !- Convection Coefficient 1 Schedule Name
+    ,                         !- Convection Coefficient 1 User Curve Name
+    ,                         !- Convection Coefficient 2 Location
+    ,                         !- Convection Coefficient 2 Type
+    0.1;                      !- Convection Coefficient 2
+
+SURFACEPROPERTY:CONVECTIONCOEFFICIENTS:MULTIPLESURFACE,
+    AllExteriorWalls,         !- Surface Type
+    Inside,                   !- Convection Coefficient 1 Location
+    Value,                    !- Convection Coefficient 1 Type
+    2.5,                      !- Convection Coefficient 1
+    ,                         !- Convection Coefficient 1 Schedule Name
+    ,                         !- Convection Coefficient 1 User Curve Name
+    ,                         !- Convection Coefficient 2 Location
+    ,                         !- Convection Coefficient 2 Type
+    0.1;                      !- Convection Coefficient 2
+
+SURFACEPROPERTY:CONVECTIONCOEFFICIENTS:MULTIPLESURFACE,
+    AllExteriorRoofs,         !- Surface Type
+    Inside,                   !- Convection Coefficient 1 Location
+    Value,                    !- Convection Coefficient 1 Type
+    5,                        !- Convection Coefficient 1
+    ,                         !- Convection Coefficient 1 Schedule Name
+    ,                         !- Convection Coefficient 1 User Curve Name
+    ,                         !- Convection Coefficient 2 Location
+    ,                         !- Convection Coefficient 2 Type
+    0.1;                      !- Convection Coefficient 2
+
+SURFACEPROPERTY:CONVECTIONCOEFFICIENTS:MULTIPLESURFACE,
+    AllInteriorCeilings,      !- Surface Type
+    Inside,                   !- Convection Coefficient 1 Location
+    Value,                    !- Convection Coefficient 1 Type
+    5,                        !- Convection Coefficient 1
+    ,                         !- Convection Coefficient 1 Schedule Name
+    ,                         !- Convection Coefficient 1 User Curve Name
+    ,                         !- Convection Coefficient 2 Location
+    ,                         !- Convection Coefficient 2 Type
+    0.1;                      !- Convection Coefficient 2
+
+SURFACEPROPERTY:CONVECTIONCOEFFICIENTS:MULTIPLESURFACE,
+    AllExteriorFloors,        !- Surface Type
+    Inside,                   !- Convection Coefficient 1 Location
+    Value,                    !- Convection Coefficient 1 Type
+    0.7,                      !- Convection Coefficient 1
+    ,                         !- Convection Coefficient 1 Schedule Name
+    ,                         !- Convection Coefficient 1 User Curve Name
+    ,                         !- Convection Coefficient 2 Location
+    ,                         !- Convection Coefficient 2 Type
+    0.1;                      !- Convection Coefficient 2
+
+SURFACEPROPERTY:CONVECTIONCOEFFICIENTS:MULTIPLESURFACE,
+    AllInteriorFloors,        !- Surface Type
+    Inside,                   !- Convection Coefficient 1 Location
+    Value,                    !- Convection Coefficient 1 Type
+    0.7,                      !- Convection Coefficient 1
+    ,                         !- Convection Coefficient 1 Schedule Name
+    ,                         !- Convection Coefficient 1 User Curve Name
+    ,                         !- Convection Coefficient 2 Location
+    ,                         !- Convection Coefficient 2 Type
+    0.1;                      !- Convection Coefficient 2
+
+SURFACEPROPERTY:CONVECTIONCOEFFICIENTS:MULTIPLESURFACE,
+    AllExteriorWindows,       !- Surface Type
+    Inside,                   !- Convection Coefficient 1 Location
+    Value,                    !- Convection Coefficient 1 Type
+    2.5,                      !- Convection Coefficient 1
+    ,                         !- Convection Coefficient 1 Schedule Name
+    ,                         !- Convection Coefficient 1 User Curve Name
+    ,                         !- Convection Coefficient 2 Location
+    ,                         !- Convection Coefficient 2 Type
+    0.1;                      !- Convection Coefficient 2
+
+OTHEREQUIPMENT,
+    Gains_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    None,                     !- Fuel Type
+    Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone or ZoneList Name
+    Always 1,                 !- Schedule Name
+    Watts/Area,               !- Design Level Calculation Method
+    ,                         !- Design Level
+    4,                        !- Power per Zone Floor Area
+    ,                         !- Power per Person
+    0,                        !- Fraction Latent
+    0.5,                      !- Fraction Radiant
+    0,                        !- Fraction Lost
+    0,                        !- Carbon Dioxide Generation Rate
+    General;                  !- EndUse Subcategory
+
+OTHEREQUIPMENT,
+    Gains_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    None,                     !- Fuel Type
+    Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone or ZoneList Name
+    Always 1,                 !- Schedule Name
+    Watts/Area,               !- Design Level Calculation Method
+    ,                         !- Design Level
+    4,                        !- Power per Zone Floor Area
+    ,                         !- Power per Person
+    0,                        !- Fraction Latent
+    0.5,                      !- Fraction Radiant
+    0,                        !- Fraction Lost
+    0,                        !- Carbon Dioxide Generation Rate
+    General;                  !- EndUse Subcategory
+
+OTHEREQUIPMENT,
+    Gains_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    None,                     !- Fuel Type
+    Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone or ZoneList Name
+    Always 1,                 !- Schedule Name
+    Watts/Area,               !- Design Level Calculation Method
+    ,                         !- Design Level
+    4,                        !- Power per Zone Floor Area
+    ,                         !- Power per Person
+    0,                        !- Fraction Latent
+    0.5,                      !- Fraction Radiant
+    0,                        !- Fraction Lost
+    0,                        !- Carbon Dioxide Generation Rate
+    General;                  !- EndUse Subcategory
+
+OTHEREQUIPMENT,
+    Gains_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    None,                     !- Fuel Type
+    Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone or ZoneList Name
+    Always 1,                 !- Schedule Name
+    Watts/Area,               !- Design Level Calculation Method
+    ,                         !- Design Level
+    4,                        !- Power per Zone Floor Area
+    ,                         !- Power per Person
+    0,                        !- Fraction Latent
+    0.5,                      !- Fraction Radiant
+    0,                        !- Fraction Lost
+    0,                        !- Carbon Dioxide Generation Rate
+    General;                  !- EndUse Subcategory
+
+ZONEINFILTRATION:DESIGNFLOWRATE,
+    Infiltration_Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone or ZoneList Name
+    Always 1,                 !- Schedule Name
+    AirChanges/Hour,          !- Design Flow Rate Calculation Method
+    ,                         !- Design Flow Rate
+    ,                         !- Flow per Zone Floor Area
+    ,                         !- Flow per Exterior Surface Area
+    0.3,                      !- Air Changes per Hour
+    1,                        !- Constant Term Coefficient
+    0,                        !- Temperature Term Coefficient
+    0,                        !- Velocity Term Coefficient
+    0;                        !- Velocity Squared Term Coefficient
+
+ZONEINFILTRATION:DESIGNFLOWRATE,
+    Infiltration_Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone or ZoneList Name
+    Always 1,                 !- Schedule Name
+    AirChanges/Hour,          !- Design Flow Rate Calculation Method
+    ,                         !- Design Flow Rate
+    ,                         !- Flow per Zone Floor Area
+    ,                         !- Flow per Exterior Surface Area
+    0.3,                      !- Air Changes per Hour
+    1,                        !- Constant Term Coefficient
+    0,                        !- Temperature Term Coefficient
+    0,                        !- Velocity Term Coefficient
+    0;                        !- Velocity Squared Term Coefficient
+
+ZONEINFILTRATION:DESIGNFLOWRATE,
+    Infiltration_Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone or ZoneList Name
+    Always 1,                 !- Schedule Name
+    AirChanges/Hour,          !- Design Flow Rate Calculation Method
+    ,                         !- Design Flow Rate
+    ,                         !- Flow per Zone Floor Area
+    ,                         !- Flow per Exterior Surface Area
+    0.3,                      !- Air Changes per Hour
+    1,                        !- Constant Term Coefficient
+    0,                        !- Temperature Term Coefficient
+    0,                        !- Velocity Term Coefficient
+    0;                        !- Velocity Squared Term Coefficient
+
+ZONEINFILTRATION:DESIGNFLOWRATE,
+    Infiltration_Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone or ZoneList Name
+    Always 1,                 !- Schedule Name
+    AirChanges/Hour,          !- Design Flow Rate Calculation Method
+    ,                         !- Design Flow Rate
+    ,                         !- Flow per Zone Floor Area
+    ,                         !- Flow per Exterior Surface Area
+    0.3,                      !- Air Changes per Hour
+    1,                        !- Constant Term Coefficient
+    0,                        !- Temperature Term Coefficient
+    0,                        !- Velocity Term Coefficient
+    0;                        !- Velocity Squared Term Coefficient
+
+ZONECONTROL:THERMOSTAT,
+    TS Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone or ZoneList Name
+    Always 4,                 !- Control Type Schedule Name
+    ThermostatSetpoint:DualSetpoint,    !- Control 1 Object Type
+    Thermostat Dual SP Control,    !- Control 1 Name
+    ,                         !- Control 2 Object Type
+    ,                         !- Control 2 Name
+    ,                         !- Control 3 Object Type
+    ,                         !- Control 3 Name
+    ,                         !- Control 4 Object Type
+    ,                         !- Control 4 Name
+    0;                        !- Temperature Difference Between Cutout And Setpoint
+
+ZONECONTROL:THERMOSTAT,
+    TS Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone or ZoneList Name
+    Always 4,                 !- Control Type Schedule Name
+    ThermostatSetpoint:DualSetpoint,    !- Control 1 Object Type
+    Thermostat Dual SP Control,    !- Control 1 Name
+    ,                         !- Control 2 Object Type
+    ,                         !- Control 2 Name
+    ,                         !- Control 3 Object Type
+    ,                         !- Control 3 Name
+    ,                         !- Control 4 Object Type
+    ,                         !- Control 4 Name
+    0;                        !- Temperature Difference Between Cutout And Setpoint
+
+ZONECONTROL:THERMOSTAT,
+    TS Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone or ZoneList Name
+    Always 4,                 !- Control Type Schedule Name
+    ThermostatSetpoint:DualSetpoint,    !- Control 1 Object Type
+    Thermostat Dual SP Control,    !- Control 1 Name
+    ,                         !- Control 2 Object Type
+    ,                         !- Control 2 Name
+    ,                         !- Control 3 Object Type
+    ,                         !- Control 3 Name
+    ,                         !- Control 4 Object Type
+    ,                         !- Control 4 Name
+    0;                        !- Temperature Difference Between Cutout And Setpoint
+
+ZONECONTROL:THERMOSTAT,
+    TS Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone or ZoneList Name
+    Always 4,                 !- Control Type Schedule Name
+    ThermostatSetpoint:DualSetpoint,    !- Control 1 Object Type
+    Thermostat Dual SP Control,    !- Control 1 Name
+    ,                         !- Control 2 Object Type
+    ,                         !- Control 2 Name
+    ,                         !- Control 3 Object Type
+    ,                         !- Control 3 Name
+    ,                         !- Control 4 Object Type
+    ,                         !- Control 4 Name
+    0;                        !- Temperature Difference Between Cutout And Setpoint
+
+THERMOSTATSETPOINT:DUALSETPOINT,
+    Thermostat Dual SP Control,    !- Name
+    Always 20,                !- Heating Setpoint Temperature Schedule Name
+    Always 26;                !- Cooling Setpoint Temperature Schedule Name
+
+ZONEHVAC:IDEALLOADSAIRSYSTEM,
+    Purchased Air Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    ,                         !- Availability Schedule Name
+    Supply Inlet Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone Supply Air Node Name
+    ,                         !- Zone Exhaust Air Node Name
+    ,                         !- System Inlet Air Node Name
+    50,                       !- Maximum Heating Supply Air Temperature
+    13,                       !- Minimum Cooling Supply Air Temperature
+    0.0156,                   !- Maximum Heating Supply Air Humidity Ratio
+    0.0077,                   !- Minimum Cooling Supply Air Humidity Ratio
+    NoLimit,                  !- Heating Limit
+    ,                         !- Maximum Heating Air Flow Rate
+    ,                         !- Maximum Sensible Heating Capacity
+    NoLimit,                  !- Cooling Limit
+    ,                         !- Maximum Cooling Air Flow Rate
+    ,                         !- Maximum Total Cooling Capacity
+    ,                         !- Heating Availability Schedule Name
+    ,                         !- Cooling Availability Schedule Name
+    ConstantSensibleHeatRatio,    !- Dehumidification Control Type
+    0.7,                      !- Cooling Sensible Heat Ratio
+    None,                     !- Humidification Control Type
+    ,                         !- Design Specification Outdoor Air Object Name
+    ,                         !- Outdoor Air Inlet Node Name
+    None,                     !- Demand Controlled Ventilation Type
+    NoEconomizer,             !- Outdoor Air Economizer Type
+    None,                     !- Heat Recovery Type
+    0.7,                      !- Sensible Heat Recovery Effectiveness
+    0.65;                     !- Latent Heat Recovery Effectiveness
+
+ZONEHVAC:IDEALLOADSAIRSYSTEM,
+    Purchased Air Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    ,                         !- Availability Schedule Name
+    Supply Inlet Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Supply Air Node Name
+    ,                         !- Zone Exhaust Air Node Name
+    ,                         !- System Inlet Air Node Name
+    50,                       !- Maximum Heating Supply Air Temperature
+    13,                       !- Minimum Cooling Supply Air Temperature
+    0.0156,                   !- Maximum Heating Supply Air Humidity Ratio
+    0.0077,                   !- Minimum Cooling Supply Air Humidity Ratio
+    NoLimit,                  !- Heating Limit
+    ,                         !- Maximum Heating Air Flow Rate
+    ,                         !- Maximum Sensible Heating Capacity
+    NoLimit,                  !- Cooling Limit
+    ,                         !- Maximum Cooling Air Flow Rate
+    ,                         !- Maximum Total Cooling Capacity
+    ,                         !- Heating Availability Schedule Name
+    ,                         !- Cooling Availability Schedule Name
+    ConstantSensibleHeatRatio,    !- Dehumidification Control Type
+    0.7,                      !- Cooling Sensible Heat Ratio
+    None,                     !- Humidification Control Type
+    ,                         !- Design Specification Outdoor Air Object Name
+    ,                         !- Outdoor Air Inlet Node Name
+    None,                     !- Demand Controlled Ventilation Type
+    NoEconomizer,             !- Outdoor Air Economizer Type
+    None,                     !- Heat Recovery Type
+    0.7,                      !- Sensible Heat Recovery Effectiveness
+    0.65;                     !- Latent Heat Recovery Effectiveness
+
+ZONEHVAC:IDEALLOADSAIRSYSTEM,
+    Purchased Air Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    ,                         !- Availability Schedule Name
+    Supply Inlet Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Supply Air Node Name
+    ,                         !- Zone Exhaust Air Node Name
+    ,                         !- System Inlet Air Node Name
+    50,                       !- Maximum Heating Supply Air Temperature
+    13,                       !- Minimum Cooling Supply Air Temperature
+    0.0156,                   !- Maximum Heating Supply Air Humidity Ratio
+    0.0077,                   !- Minimum Cooling Supply Air Humidity Ratio
+    NoLimit,                  !- Heating Limit
+    ,                         !- Maximum Heating Air Flow Rate
+    ,                         !- Maximum Sensible Heating Capacity
+    NoLimit,                  !- Cooling Limit
+    ,                         !- Maximum Cooling Air Flow Rate
+    ,                         !- Maximum Total Cooling Capacity
+    ,                         !- Heating Availability Schedule Name
+    ,                         !- Cooling Availability Schedule Name
+    ConstantSensibleHeatRatio,    !- Dehumidification Control Type
+    0.7,                      !- Cooling Sensible Heat Ratio
+    None,                     !- Humidification Control Type
+    ,                         !- Design Specification Outdoor Air Object Name
+    ,                         !- Outdoor Air Inlet Node Name
+    None,                     !- Demand Controlled Ventilation Type
+    NoEconomizer,             !- Outdoor Air Economizer Type
+    None,                     !- Heat Recovery Type
+    0.7,                      !- Sensible Heat Recovery Effectiveness
+    0.65;                     !- Latent Heat Recovery Effectiveness
+
+ZONEHVAC:IDEALLOADSAIRSYSTEM,
+    Purchased Air Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    ,                         !- Availability Schedule Name
+    Supply Inlet Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Supply Air Node Name
+    ,                         !- Zone Exhaust Air Node Name
+    ,                         !- System Inlet Air Node Name
+    50,                       !- Maximum Heating Supply Air Temperature
+    13,                       !- Minimum Cooling Supply Air Temperature
+    0.0156,                   !- Maximum Heating Supply Air Humidity Ratio
+    0.0077,                   !- Minimum Cooling Supply Air Humidity Ratio
+    NoLimit,                  !- Heating Limit
+    ,                         !- Maximum Heating Air Flow Rate
+    ,                         !- Maximum Sensible Heating Capacity
+    NoLimit,                  !- Cooling Limit
+    ,                         !- Maximum Cooling Air Flow Rate
+    ,                         !- Maximum Total Cooling Capacity
+    ,                         !- Heating Availability Schedule Name
+    ,                         !- Cooling Availability Schedule Name
+    ConstantSensibleHeatRatio,    !- Dehumidification Control Type
+    0.7,                      !- Cooling Sensible Heat Ratio
+    None,                     !- Humidification Control Type
+    ,                         !- Design Specification Outdoor Air Object Name
+    ,                         !- Outdoor Air Inlet Node Name
+    None,                     !- Demand Controlled Ventilation Type
+    NoEconomizer,             !- Outdoor Air Economizer Type
+    None,                     !- Heat Recovery Type
+    0.7,                      !- Sensible Heat Recovery Effectiveness
+    0.65;                     !- Latent Heat Recovery Effectiveness
+
+ZONEHVAC:EQUIPMENTLIST,
+    Equipment Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Name
+    SequentialLoad,           !- Load Distribution Scheme
+    ZoneHVAC:IdealLoadsAirSystem,    !- Zone Equipment 1 Object Type
+    Purchased Air Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone Equipment 1 Name
+    1,                        !- Zone Equipment 1 Cooling Sequence
+    1;                        !- Zone Equipment 1 Heating or NoLoad Sequence
+
+ZONEHVAC:EQUIPMENTLIST,
+    Equipment Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    SequentialLoad,           !- Load Distribution Scheme
+    ZoneHVAC:IdealLoadsAirSystem,    !- Zone Equipment 1 Object Type
+    Purchased Air Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Equipment 1 Name
+    1,                        !- Zone Equipment 1 Cooling Sequence
+    1;                        !- Zone Equipment 1 Heating or NoLoad Sequence
+
+ZONEHVAC:EQUIPMENTLIST,
+    Equipment Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    SequentialLoad,           !- Load Distribution Scheme
+    ZoneHVAC:IdealLoadsAirSystem,    !- Zone Equipment 1 Object Type
+    Purchased Air Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Equipment 1 Name
+    1,                        !- Zone Equipment 1 Cooling Sequence
+    1;                        !- Zone Equipment 1 Heating or NoLoad Sequence
+
+ZONEHVAC:EQUIPMENTLIST,
+    Equipment Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Name
+    SequentialLoad,           !- Load Distribution Scheme
+    ZoneHVAC:IdealLoadsAirSystem,    !- Zone Equipment 1 Object Type
+    Purchased Air Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Equipment 1 Name
+    1,                        !- Zone Equipment 1 Cooling Sequence
+    1;                        !- Zone Equipment 1 Heating or NoLoad Sequence
+
+ZONEHVAC:EQUIPMENTCONNECTIONS,
+    Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone Name
+    Equipment Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone Conditioning Equipment List Name
+    Supply Inlet Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone Air Inlet Node or NodeList Name
+    ,                         !- Zone Air Exhaust Node or NodeList Name
+    Zone Air Node Flr1_Group15_Building5_Floor1_Room1_Simplified,    !- Zone Air Node Name
+    Return Outlet Flr1_Group15_Building5_Floor1_Room1_Simplified;    !- Zone Return Air Node or NodeList Name
+
+ZONEHVAC:EQUIPMENTCONNECTIONS,
+    Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Equipment Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Conditioning Equipment List Name
+    Supply Inlet Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Air Inlet Node or NodeList Name
+    ,                         !- Zone Air Exhaust Node or NodeList Name
+    Zone Air Node Flr1_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Air Node Name
+    Return Outlet Flr1_Group15_Building5_Floor2_Room1_Simplified;    !- Zone Return Air Node or NodeList Name
+
+ZONEHVAC:EQUIPMENTCONNECTIONS,
+    Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Equipment Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Conditioning Equipment List Name
+    Supply Inlet Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Air Inlet Node or NodeList Name
+    ,                         !- Zone Air Exhaust Node or NodeList Name
+    Zone Air Node Flr2_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Air Node Name
+    Return Outlet Flr2_Group15_Building5_Floor2_Room1_Simplified;    !- Zone Return Air Node or NodeList Name
+
+ZONEHVAC:EQUIPMENTCONNECTIONS,
+    Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Name
+    Equipment Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Conditioning Equipment List Name
+    Supply Inlet Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Air Inlet Node or NodeList Name
+    ,                         !- Zone Air Exhaust Node or NodeList Name
+    Zone Air Node Flr3_Group15_Building5_Floor2_Room1_Simplified,    !- Zone Air Node Name
+    Return Outlet Flr3_Group15_Building5_Floor2_Room1_Simplified;    !- Zone Return Air Node or NodeList Name
+
+OUTPUT:VARIABLEDICTIONARY,
+    regular,                  !- Key Field
+    Name;                     !- Sort Option
+
+OUTPUT:VARIABLEDICTIONARY,
+    IDF,                      !- Key Field
+    Name;                     !- Sort Option
+
+OUTPUTCONTROL:TABLE:STYLE,
+    Comma,                    !- Column Separator
+    JtoKWH;                   !- Unit Conversion
+
+OUTPUT:VARIABLE,
+    *,                        !- Key Value
+    Zone Ideal Loads Supply Air Total Heating Energy,    !- Variable Name
+    Hourly;                   !- Reporting Frequency
+
+OUTPUT:VARIABLE,
+    *,                        !- Key Value
+    Zone Ideal Loads Supply Air Total Cooling Energy,    !- Variable Name
+    Hourly;                   !- Reporting Frequency
+
+OUTPUT:VARIABLE,
+    *,                        !- Key Value
+    Zone Air Temperature,     !- Variable Name
+    Hourly;                   !- Reporting Frequency
