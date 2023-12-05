@@ -7,6 +7,6 @@ The technical implementation of the algorithm is in the Python programming langu
 # More details and references
 To learn more about this work or to cite it, please see the following two publications:
 - Validation of the algorithm for stand-alone buildings: https://www.sciencedirect.com/science/article/pii/S2210670722006096
-- Validation of the algorithm at district-level: https://www.sciencedirect.com/science/article/pii/S0306261923009340
+- Validation of the algorithm at district-level (open access): https://www.sciencedirect.com/science/article/pii/S0306261923009340
 # Contact
 [Federico Battini](https://www.linkedin.com/in/federico-battini/).
