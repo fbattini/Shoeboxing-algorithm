@@ -5,6 +5,19 @@ The algorithm starts from an .idf file to perform the simplification. An example
 
 The file to run to perform the simplification is 1_DetailedToSimplified.py. The whole process is performed automatically for as many .idf files as there are in the Simulation/Detailed folder.
 
+The algorithm was developed in two versions:
+- Basic: using an annual direct radiation analysis to account for the urban context
+- Improved: using a global radiation analysis to account for the urban context
+![SimplificationWorkflow](https://github.com/fbattini/Shoeboxing-algorithm/assets/71373172/eaa20860-7743-4514-a21f-efe961edf24a)
+From line 59 to 63 it is possible to choose the version of the algorithm (i.e., 'Annual' or 'Monthly'), the number of cores to use for the simulation, whether or not the simulation should to be run locally, the name of the weather file to be used from those available in the WeatherFiles folder, and the working folder, as follows:
+```
+simplificationType = 'Annual'
+num_CPUs = 2
+runSimulationLocally = True
+climate = 'Bolzano'
+caseStudy = 'Simulation'
+```
+
 The technical implementation of the algorithm is in the Python programming language and is based on numpy, pandas, scipy, and eppy.
 ## More details and references
 To learn more about this work or to cite it, please see the following two publications (the second is open access):
@@ -12,6 +25,7 @@ To learn more about this work or to cite it, please see the following two public
 - Federico Battini, Giovanni Pernigotto, Andrea Gasparella, "District-level validation of a shoeboxing simplification algorithm to speed-up Urban Building Energy Modeling simulations", Applied Energy, Volume 349, 2023, 121570, ISSN 0306-2619, https://doi.org/10.1016/j.apenergy.2023.121570. (https://www.sciencedirect.com/science/article/pii/S0306261923009340)
 ## Current limitations
 For now, this version of the algorithm implementation has the following limitations:
+- There is not yet an interface, so the algorithm needs to be run from code
 - Detailed models must be run for comparison and to obtain some properties to create the simplified models
 - Buildings can have up to four stories
 - Results are not automatically post-processed
