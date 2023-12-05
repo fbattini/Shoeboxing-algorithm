@@ -15,6 +15,7 @@ For now, this version of the algorithm implementation has the following limitati
 - Detailed models must be run for comparison and to obtain some properties to create the simplified models
 - Buildings can have up to four stories
 - Results are not automatically post-processed
+
 These limitations are only related to the practical implementation and not to the methodology itself.
 ## Contact
 [Federico Battini](https://www.linkedin.com/in/federico-battini/)
