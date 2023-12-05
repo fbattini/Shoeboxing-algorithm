@@ -8,7 +8,9 @@ The file to run to perform the simplification is 1_DetailedToSimplified.py. The 
 The algorithm was developed in two versions:
 - Basic: using an annual direct radiation analysis to account for the urban context
 - Improved: using a monthly global radiation analysis to account for the urban context
+
 ![SimplificationWorkflow](https://github.com/fbattini/Shoeboxing-algorithm/assets/71373172/eaa20860-7743-4514-a21f-efe961edf24a)
+
 From line 59 to 63 of 1_DetailedToSimplified.py it is possible to choose the version of the algorithm (i.e., 'Annual' or 'Monthly'), the number of cores to use for the simulation, whether or not the simulation should to be run locally, the name of the weather file to be used from those available in the WeatherFiles folder, and the working folder, as follows:
 ```
 simplificationType = 'Annual'
