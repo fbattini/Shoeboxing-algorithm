@@ -10,7 +10,7 @@ The technical implementation of the algorithm is in the Python programming langu
 To learn more about this work or to cite it, please see the following two publications:
 - Validation of the algorithm for stand-alone buildings: https://www.sciencedirect.com/science/article/pii/S2210670722006096
 - Validation of the algorithm at district-level (open access): https://www.sciencedirect.com/science/article/pii/S0306261923009340
-## Current limitation
+## Current limitations
 For now, this version of the algorithm implementation has the following limitations:
 - Detailed models must be run for comparison and to obtain some properties to create the simplified models
 - Buildings can have up to four stories
