@@ -20,7 +20,7 @@ climate = 'Bolzano'
 caseStudy = 'Simulation'
 ```
 
-The technical implementation of the algorithm is in the Python programming language and is based on numpy, pandas, scipy, and eppy.
+The technical implementation of the algorithm is in the Python programming language and is based on numpy, pandas, scipy, and eppy. Energyplus is used as building performance simulation engine.
 ## More details and references
 To learn more about this work or to cite it, please see the following two publications (the second is open access):
 - Federico Battini, Giovanni Pernigotto, Andrea Gasparella, "A shoeboxing algorithm for urban building energy modeling: Validation for stand-alone buildings", Sustainable Cities and Society, Volume 89, 2023, 104305, ISSN 2210-6707, https://doi.org/10.1016/j.scs.2022.104305. (https://www.sciencedirect.com/science/article/pii/S2210670722006096)
